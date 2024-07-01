@@ -1,9 +1,11 @@
 package org.Vrglab.LogicGates;
 
-public final class ExampleMod {
+import org.Vrglab.LogicGates.World.Blocks.LogicGateBlocks;
+
+public final class LogicGatesMod {
     public static final String MOD_ID = "logic_gates";
 
     public static void init() {
-        // Write common init code here.
+        LogicGateBlocks.init();
     }
 }
