@@ -4,9 +4,13 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.Vrglab.LogicGates.LogicGatesMod;
 import org.Vrglab.Modloader.Registration.Registry;
+import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
@@ -71,6 +75,12 @@ public class WorldUtils {
     }
     public static Item.Properties getBaseSettings(ResourceKey<CreativeModeTab> tab){
         return new Item.Properties().arch$tab(tab);
+    }
+
+
+    @Nullable
+    public static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
+        return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
     }
 
 
