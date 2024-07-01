@@ -29,7 +29,7 @@ subprojects {
     apply plugin: 'maven-publish'
 
     base {
-        // Set up a suffixed format for the mod jar names, e.g. `example-fabric`.
+        // Set up a suffixed format for the mod jar names, e.g. `LogicGates-fabric`.
         archivesName = "$rootProject.archives_name-$project.name"
     }
 

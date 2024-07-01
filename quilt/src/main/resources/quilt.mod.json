@@ -6,16 +6,16 @@
     "version": "${version}",
     "metadata": {
       "name": "Logic Gates",
-      "description": "This is an example description! Tell everyone what your mod is about!",
+      "description": "This mod aims to add simple logic gates block to use in redstone builds",
       "contributors": {
-        "Me!": "Author"
+        "Vrglab": "Author"
       },
-      "icon": "assets/logic_gates/icon.png"
+      "icon": "logo.png"
     },
     "intermediate_mappings": "net.fabricmc:intermediary",
     "entrypoints": {
       "init": [
-        "org.Vrglab.LogicGates.quilt.ExampleModQuilt"
+        "org.Vrglab.LogicGates.quilt.LogicGatesModQuilt"
       ]
     },
     "depends": [

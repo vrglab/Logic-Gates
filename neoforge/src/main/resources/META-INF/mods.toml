@@ -7,9 +7,9 @@ license = "Insert License Here"
 modId = "logic_gates"
 version = "${version}"
 displayName = "Logic Gates"
-authors = "Me!"
+authors = "Vrglab"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+This mod aims to add simple logic gates block to use in redstone builds
 '''
 #logoFile = ""
 
