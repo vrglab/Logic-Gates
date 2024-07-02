@@ -6,7 +6,7 @@ import org.Vrglab.LogicGates.World.WorldUtils;
 
 public class LogicGateBlockEntityBlocks {
 
-    public static Object NOT_GATE = WorldUtils.createBlock("not_gate", ()->WorldUtils.getBaseSettings(), BlockBehaviour.Properties.of(), NotGateBlock.class);
+    public static Object NOT_GATE_BLOCK = WorldUtils.createBlock("not_gate_block", ()->WorldUtils.getBaseSettings(), BlockBehaviour.Properties.of(), NotGateBlock.class);
 
     public static void init(){
 

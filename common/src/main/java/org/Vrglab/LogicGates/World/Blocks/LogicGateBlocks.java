@@ -8,7 +8,7 @@ public class LogicGateBlocks {
 
     public static void init(){
         LogicGateBasicBlocks.init();
-        LogicGateBlockEntityTypes.init();
         LogicGateBlockEntityBlocks.init();
+        LogicGateBlockEntityTypes.init();
     }
 }

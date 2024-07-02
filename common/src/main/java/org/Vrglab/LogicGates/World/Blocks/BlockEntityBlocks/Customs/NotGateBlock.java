@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class NotGateBlock extends BaseEntityBlock {
 
-    protected NotGateBlock(Properties properties) {
+    public NotGateBlock(Properties properties) {
         super(properties);
     }
 

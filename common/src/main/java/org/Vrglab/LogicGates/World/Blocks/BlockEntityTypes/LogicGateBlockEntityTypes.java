@@ -9,7 +9,7 @@ import org.Vrglab.Modloader.Registration.Registry;
 
 public class LogicGateBlockEntityTypes {
 
-    public static Object NOT_GATE_ENTITY_TYPE = Registry.RegisterBlockEntityType("not_gate_entity_type", LogicGatesMod.MOD_ID, NotGateBlockEntity::new, LogicGateBlockEntityBlocks.NOT_GATE);
+    public static Object NOT_GATE_ENTITY_TYPE = Registry.RegisterBlockEntityType("not_gate_entity_type", LogicGatesMod.MOD_ID, NotGateBlockEntity::new, LogicGateBlockEntityBlocks.NOT_GATE_BLOCK);
 
     public static void init(){
 

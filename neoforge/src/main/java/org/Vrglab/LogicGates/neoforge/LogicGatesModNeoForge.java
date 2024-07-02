@@ -20,17 +20,6 @@ import org.Vrglab.neoforge.Utils.NeoForgeRegistryCreator;
 @Mod(LogicGatesMod.MOD_ID)
 public final class LogicGatesModNeoForge {
     public LogicGatesModNeoForge(IEventBus modbus) {
-        DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPE = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, LogicGatesMod.MOD_ID);
-        BLOCK_ENTITY_TYPE.register(modbus);
-        ICallBack BlockEntityTypeRegistryCallBack = new ICallBack() {
-            @Override
-            public Object accept(Object... args) {
-                return BLOCK_ENTITY_TYPE.register(args[0].toString(), ()->BlockEntityType.Builder.of((blockPos,blockState)->((IBlockEntityLoaderFunction)args[1]).create(blockPos, blockState), ((Block)((DeferredBlock)args[2]).get())).build(null));
-            }
-        };
-        Registry.initRegistry(BlockEntityTypeRegistryCallBack, RegistryTypes.BLOCK_ENTITY_TYPE, LogicGatesMod.MOD_ID);
-
-
         NeoForgeRegistryCreator.Create(modbus, LogicGatesMod.MOD_ID);
         LogicGatesMod.init();
     }
