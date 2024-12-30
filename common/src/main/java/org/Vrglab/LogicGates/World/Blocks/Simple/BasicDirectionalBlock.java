@@ -27,11 +27,6 @@ public abstract class BasicDirectionalBlock extends DiodeBlock {
     }
 
     @Override
-    public @Nullable BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
-        return this.defaultBlockState().setValue(FACING, blockPlaceContext.getNearestLookingDirection().getOpposite().getOpposite());
-    }
-
-    @Override
     protected int getDelay(BlockState blockState) {
         return 1;
     }

@@ -18,7 +18,6 @@ import org.Vrglab.LogicGates.World.Blocks.Simple.BasicDirectionalBlock;
 
 public class NotGateBlock extends BasicDirectionalBlock {
     public static final MapCodec<NotGateBlock> CODEC = simpleCodec(NotGateBlock::new);
-    public static final IntegerProperty POWER = BlockStateProperties.POWER;
 
     @Override
     protected MapCodec<NotGateBlock> codec() {
@@ -27,12 +26,12 @@ public class NotGateBlock extends BasicDirectionalBlock {
 
     public NotGateBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(getStateDefinition().any().setValue(POWER, 15));
+        this.registerDefaultState(getStateDefinition().any().setValue(POWERED, true));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{POWER, FACING});
+        builder.add(new Property[]{POWERED, FACING});
     }
 
     @Override
@@ -41,24 +40,14 @@ public class NotGateBlock extends BasicDirectionalBlock {
     }
 
     @Override
-    public int getSignal(BlockState state, BlockGetter world, BlockPos pos, Direction direction) {
-        return (direction == state.getValue(FACING)) ? state.getValue(POWER) : 0;
-    }
-
-    @Override
     protected void checkTickOnNeighbor(Level world, BlockPos pos, BlockState state) {
         if (!world.getBlockTicks().willTickThisTick(pos, this)) {
             boolean hasInputSignal = false;
             int inputSignal = getInputSignal(world, pos, state.getValue(FACING));
             if (inputSignal > 0) {
-                BlockPos inputPos = pos.relative(state.getValue(FACING));
-                if (inputPos.equals(pos)) {
-                    return;
-                }
                 hasInputSignal = true;
             }
-            int outputSignal = hasInputSignal ? 0 : 15;
-            if (state.getValue(POWER) != outputSignal) {
+            if ((state.getValue(POWERED) && hasInputSignal) || (!state.getValue(POWERED) && !hasInputSignal)) {
                 world.scheduleTick(pos, this, this.getDelay(state), TickPriority.HIGH);
             }
         }
@@ -69,15 +58,10 @@ public class NotGateBlock extends BasicDirectionalBlock {
         boolean hasInputSignal = false;
         int inputSignal = getInputSignal(world, pos, state.getValue(FACING));
         if (inputSignal > 0) {
-            BlockPos inputPos = pos.relative(state.getValue(FACING));
-            if (inputPos.equals(pos)) {
-                return;
-            }
             hasInputSignal = true;
         }
-        int outputSignal = hasInputSignal ? 0 : 15;
-        if (state.getValue(POWER) != outputSignal) {
-            BlockState newState = state.setValue(POWER, outputSignal);
+        if ((state.getValue(POWERED) && hasInputSignal) || (!state.getValue(POWERED) && !hasInputSignal)) {
+            BlockState newState = state.setValue(POWERED, !hasInputSignal);
             world.setBlock(pos, newState, 3);
         }
     }
