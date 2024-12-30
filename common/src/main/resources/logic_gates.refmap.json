@@ -1,8 +1,0 @@
-{
-  "mappings": {
-    "org.Vrglab.LogicGates.Mixins.RedstoneWireBlockMixin": {
-      "getConnectingSide": "Lnet/minecraft/world/level/block/RedStoneWireBlock;getConnectingSide(Lnet/minecraft/core/Direction;)Z",
-      "shouldConnectTo": "Lnet/minecraft/world/level/block/RedStoneWireBlock;shouldConnectTo(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z"
-    }
-  }
-}
