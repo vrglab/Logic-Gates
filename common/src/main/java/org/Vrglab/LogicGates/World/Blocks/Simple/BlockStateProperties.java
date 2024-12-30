@@ -1,6 +1,5 @@
-package org.Vrglab.LogicGates.World.Blocks.BlockEntityBlocks;
+package org.Vrglab.LogicGates.World.Blocks.Simple;
 
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 public class BlockStateProperties extends net.minecraft.world.level.block.state.properties.BlockStateProperties {

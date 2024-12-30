@@ -1,14 +1,15 @@
-package org.Vrglab.LogicGates.World.Blocks.BlockEntityBlocks.Customs;
+package org.Vrglab.LogicGates.World.Blocks.Simple;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.DiodeBlock;
 import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class BasicDirectionalBlock extends DirectionalBlock {
+public abstract class BasicDirectionalBlock extends DiodeBlock {
 
     public BasicDirectionalBlock(Properties properties) {
         super(properties);
@@ -28,5 +29,10 @@ public abstract class BasicDirectionalBlock extends DirectionalBlock {
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
         return this.defaultBlockState().setValue(FACING, blockPlaceContext.getNearestLookingDirection().getOpposite().getOpposite());
+    }
+
+    @Override
+    protected int getDelay(BlockState blockState) {
+        return 1;
     }
 }

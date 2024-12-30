@@ -43,10 +43,7 @@ subprojects {
 
     dependencies {
         minecraft "net.minecraft:minecraft:$rootProject.minecraft_version"
-        mappings loom.layered() {
-            "net.fabricmc:yarn:$rootProject.yarn_mappings:v2"
-            officialMojangMappings()
-        }
+        mappings loom.officialMojangMappings()
     }
 
     java {

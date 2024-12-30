@@ -1,21 +1,20 @@
-package org.Vrglab.LogicGates.World.Blocks.BlockEntityBlocks.Customs;
+package org.Vrglab.LogicGates.World.Blocks.Simple.Gates;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.ticks.TickPriority;
+import org.Vrglab.LogicGates.World.Blocks.Simple.BasicDirectionalBlock;
 
 public class NotGateBlock extends BasicDirectionalBlock {
     public static final MapCodec<NotGateBlock> CODEC = simpleCodec(NotGateBlock::new);
@@ -28,7 +27,7 @@ public class NotGateBlock extends BasicDirectionalBlock {
 
     public NotGateBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(((BlockState) getStateDefinition().any()).setValue(POWER, 15));
+        this.registerDefaultState(getStateDefinition().any().setValue(POWER, 15));
     }
 
     @Override
@@ -47,13 +46,26 @@ public class NotGateBlock extends BasicDirectionalBlock {
     }
 
     @Override
-    public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
-        if (!world.isClientSide) {
-            updatePower(state, world, pos);
+    protected void checkTickOnNeighbor(Level world, BlockPos pos, BlockState state) {
+        if (!world.getBlockTicks().willTickThisTick(pos, this)) {
+            boolean hasInputSignal = false;
+            int inputSignal = getInputSignal(world, pos, state.getValue(FACING));
+            if (inputSignal > 0) {
+                BlockPos inputPos = pos.relative(state.getValue(FACING));
+                if (inputPos.equals(pos)) {
+                    return;
+                }
+                hasInputSignal = true;
+            }
+            int outputSignal = hasInputSignal ? 0 : 15;
+            if (state.getValue(POWER) != outputSignal) {
+                world.scheduleTick(pos, this, this.getDelay(state), TickPriority.HIGH);
+            }
         }
     }
 
-    private void updatePower(BlockState state, Level world, BlockPos pos) {
+    @Override
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource randomSource) {
         boolean hasInputSignal = false;
         int inputSignal = getInputSignal(world, pos, state.getValue(FACING));
         if (inputSignal > 0) {
