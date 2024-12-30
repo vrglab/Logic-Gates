@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import org.jetbrains.annotations.Nullable;
 
-public class NotGateBlock extends DirectionalBlock {
+public class NotGateBlock extends BasicDirectionalBlock {
     public static final MapCodec<NotGateBlock> CODEC = simpleCodec(NotGateBlock::new);
     public static final IntegerProperty POWER = BlockStateProperties.POWER;
 
@@ -29,21 +29,6 @@ public class NotGateBlock extends DirectionalBlock {
     public NotGateBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(((BlockState) getStateDefinition().any()).setValue(POWER, 15));
-    }
-
-    @Override
-    public BlockState rotate(BlockState blockState, Rotation rotation) {
-        return (BlockState)blockState.setValue(FACING, rotation.rotate((Direction)blockState.getValue(FACING)));
-    }
-
-    @Override
-    public BlockState mirror(BlockState blockState, Mirror mirror) {
-        return blockState.rotate(mirror.getRotation((Direction)blockState.getValue(FACING)));
-    }
-
-    @Override
-    public @Nullable BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
-        return (BlockState)this.defaultBlockState().setValue(FACING, blockPlaceContext.getNearestLookingDirection().getOpposite().getOpposite());
     }
 
     @Override
