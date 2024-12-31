@@ -65,9 +65,4 @@ public class NotGateBlock extends BasicDirectionalBlock {
             world.setBlock(pos, newState, 3);
         }
     }
-
-    private int getInputSignal(Level world, BlockPos pos, Direction direction) {
-        BlockPos inputPos = pos.relative(direction);
-        return world.getSignal(inputPos, direction);
-    }
 }
