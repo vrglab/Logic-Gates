@@ -8,11 +8,13 @@ import org.Vrglab.LogicGates.World.WorldUtils;
 
 public class LogicGateBasicBlocks {
 
-    public static Object NOT_GATE_BLOCK = WorldUtils.createBlock("not_gate_block", ()->WorldUtils.getBaseSettings(), BlockBehaviour.Properties.ofFullCopy(Blocks.REPEATER), NotGateBlock.class);
+    public static Object NOT_GATE_BLOCK = WorldUtils.createBlock("not_gate_block", ()->WorldUtils.getBaseSettings(), BlockBehaviour.Properties.of(), NotGateBlock.class);
 
     public static Object NAND_GATE_BLOCK = WorldUtils.createBlock("nand_gate_block", ()->WorldUtils.getBaseSettings(), BlockBehaviour.Properties.of(), NandGateBlock.class);
 
     public static Object NOR_GATE_BLOCK = WorldUtils.createBlock("nor_gate_block", ()->WorldUtils.getBaseSettings(), BlockBehaviour.Properties.of(), NorGateBlock.class);
+
+    public static Object AND_GATE_BLOCK = WorldUtils.createBlock("and_gate_block", ()->WorldUtils.getBaseSettings(), BlockBehaviour.Properties.of(), AndGateBlock.class);
 
     public static void init(){
 

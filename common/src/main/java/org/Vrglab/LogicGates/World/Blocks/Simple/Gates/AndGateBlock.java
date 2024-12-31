@@ -14,18 +14,18 @@ import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.ticks.TickPriority;
 import org.Vrglab.LogicGates.World.Blocks.Simple.BlockStateProperties;
 
-public class NandGateBlock extends BaseGateClass {
-    public static final MapCodec<NandGateBlock> CODEC = simpleCodec(NandGateBlock::new);
+public class AndGateBlock extends BaseGateClass {
+    public static final MapCodec<AndGateBlock> CODEC = simpleCodec(AndGateBlock::new);
 
     public static final BooleanProperty LEFT_INPUT = BlockStateProperties.LEFT_INPUT;
     public static final BooleanProperty RIGHT_INPUT = BlockStateProperties.RIGHT_INPUT;
 
-    public NandGateBlock(Properties properties) {
+    public AndGateBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(getStateDefinition().any()
                 .setValue(LEFT_INPUT, false)
                 .setValue(RIGHT_INPUT, false)
-                .setValue(POWERED, true)
+                .setValue(POWERED, false)
         );
     }
 
@@ -35,7 +35,7 @@ public class NandGateBlock extends BaseGateClass {
     }
 
     @Override
-    protected MapCodec<NandGateBlock> codec() {
+    protected MapCodec<AndGateBlock> codec() {
         return CODEC;
     }
 
@@ -92,11 +92,11 @@ public class NandGateBlock extends BaseGateClass {
         }
 
         // Deal with the output state
-        if (state_new.getValue(POWERED) && state_new.getValue(LEFT_INPUT) && state_new.getValue(RIGHT_INPUT)) {
-            state_new = state_new.setValue(POWERED, false);
-        }
-        if ((!state_new.getValue(POWERED) && !state_new.getValue(LEFT_INPUT)) || (!state_new.getValue(POWERED) && !state_new.getValue(RIGHT_INPUT))) {
+        if (!state_new.getValue(POWERED) && state_new.getValue(LEFT_INPUT) && state_new.getValue(RIGHT_INPUT)) {
             state_new = state_new.setValue(POWERED, true);
+        }
+        if ((state_new.getValue(POWERED) && !state_new.getValue(LEFT_INPUT)) || (state_new.getValue(POWERED) && !state_new.getValue(RIGHT_INPUT))) {
+            state_new = state_new.setValue(POWERED, false);
         }
         return state_new;
     }

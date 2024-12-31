@@ -2,21 +2,16 @@ package org.Vrglab.LogicGates.World.Blocks.Simple.Gates;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.ticks.TickPriority;
-import org.Vrglab.LogicGates.World.Blocks.Simple.BasicDirectionalBlock;
 
-public class NotGateBlock extends BasicDirectionalBlock {
+public class NotGateBlock extends BaseGateClass {
     public static final MapCodec<NotGateBlock> CODEC = simpleCodec(NotGateBlock::new);
 
     @Override
