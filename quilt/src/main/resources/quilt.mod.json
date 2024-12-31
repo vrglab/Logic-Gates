@@ -16,6 +16,9 @@
     "entrypoints": {
       "init": [
         "org.Vrglab.LogicGates.quilt.LogicGatesModQuilt"
+      ],
+      "client": [
+        "org.Vrglab.LogicGates.quilt.LogicGatesModQuiltClient"
       ]
     },
     "depends": [

@@ -1,10 +1,10 @@
 {
 	"ambientocclusion": false,
 	"textures": {
-		"slab": "block/smooth_stone",
+		"slab": "minecraft:block/smooth_stone",
 		"particle": "logic_gates:block/not_gate_off",
 		"top": "logic_gates:block/not_gate_off",
-		"unlit": "block/redstone_torch_off"
+		"unlit": "minecraft:block/redstone_torch_off"
 	},
 	"elements": [
 		{
@@ -20,26 +20,26 @@
 			}
 		},
 		{
-			"from": [7, 7, 12],
-			"to": [9, 7, 14],
-			"rotation": {"angle": 0, "axis": "y", "origin": [-3, 0, 1]},
+			"from": [7, 7, 5],
+			"to": [9, 7, 7],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-3, 0, -6]},
 			"faces": {
 				"up": {"uv": [7, 6, 9, 8], "texture": "#unlit"}
 			}
 		},
 		{
-			"from": [6, 2, 12],
-			"to": [10, 8, 14],
-			"rotation": {"angle": 0, "axis": "y", "origin": [-3, 0, 1]},
+			"from": [6, 2, 5],
+			"to": [10, 8, 7],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-3, 0, -6]},
 			"faces": {
 				"north": {"uv": [6, 5, 10, 11], "texture": "#unlit"},
 				"south": {"uv": [6, 5, 10, 11], "texture": "#unlit"}
 			}
 		},
 		{
-			"from": [7, 2, 11],
-			"to": [9, 8, 15],
-			"rotation": {"angle": 0, "axis": "y", "origin": [-3, 0, 1]},
+			"from": [7, 2, 4],
+			"to": [9, 8, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-3, 0, -6]},
 			"faces": {
 				"east": {"uv": [6, 5, 10, 11], "texture": "#unlit"},
 				"west": {"uv": [6, 5, 10, 11], "texture": "#unlit"}

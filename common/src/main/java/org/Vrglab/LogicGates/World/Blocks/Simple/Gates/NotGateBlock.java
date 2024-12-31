@@ -25,7 +25,7 @@ public class NotGateBlock extends BasicDirectionalBlock {
     }
 
     public NotGateBlock(Properties properties) {
-        super(properties);
+        super(properties.noOcclusion().forceSolidOff());
         this.registerDefaultState(getStateDefinition().any().setValue(POWERED, true));
     }
 
