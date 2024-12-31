@@ -47,53 +47,9 @@ public class NandGateBlock extends BasicDirectionalBlock {
     }
 
     @Override
-    public int getDirectSignal(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, Direction direction) {
-        return blockState.getSignal(blockGetter, blockPos, direction);
-    }
-
-    @Override
-    public int getSignal(BlockState state, BlockGetter world, BlockPos pos, Direction direction) {
-        if(direction == state.getValue(FACING)) {
-            if(state.getValue(POWERED)) {
-                return 15;
-            }
-        }
-        return 0;
-    }
-
-    @Override
     protected void checkTickOnNeighbor(Level world, BlockPos pos, BlockState state) {
         if (!world.getBlockTicks().willTickThisTick(pos, this)) {
-            BlockState state_new = state;
-            Direction facing = state_new.getValue(FACING);
-            Direction right, left;
-            if (facing.getAxis().isHorizontal()) {
-                right = facing.getClockWise();
-                left = facing.getCounterClockWise();
-            } else {
-                right = Direction.EAST;
-                left = Direction.WEST;
-            }
-            int inputSignal = getInputSignal(world, pos, right);
-            if (inputSignal > 0 && !state_new.getValue(RIGHT_INPUT)) {
-                state_new = state_new.setValue(RIGHT_INPUT, true);
-            }
-            if (inputSignal <= 0 && state_new.getValue(RIGHT_INPUT)) {
-                state_new = state_new.setValue(RIGHT_INPUT, false);
-            }
-            inputSignal = getInputSignal(world, pos, left);
-            if (inputSignal > 0 && !state_new.getValue(LEFT_INPUT)) {
-                state_new = state_new.setValue(LEFT_INPUT, true);
-            }
-            if (inputSignal <= 0 && state_new.getValue(LEFT_INPUT)) {
-                state_new = state_new.setValue(LEFT_INPUT, false);
-            }
-            if (state_new.getValue(POWERED) && state_new.getValue(LEFT_INPUT) && state_new.getValue(RIGHT_INPUT)) {
-                state_new = state_new.setValue(POWERED, false);
-            }
-            if ((!state_new.getValue(POWERED) && !state_new.getValue(LEFT_INPUT)) || (!state_new.getValue(POWERED) && !state_new.getValue(RIGHT_INPUT))) {
-                state_new = state_new.setValue(POWERED, true);
-            }
+            BlockState state_new = RunInputDealings(state, world, pos);
             if (state_new != state) {
                 world.scheduleTick(pos, this, this.getDelay(state), TickPriority.HIGH);
             }
@@ -102,8 +58,13 @@ public class NandGateBlock extends BasicDirectionalBlock {
 
     @Override
     public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource randomSource) {
-        BlockState state_new = state;
+        BlockState state_new = RunInputDealings(state, world, pos);
+        if (state_new != state) {
+            world.setBlock(pos, state_new, 3);
+        }
+    }
 
+    private BlockState RunInputDealings(BlockState state_new, Level world, BlockPos pos) {
         Direction facing = state_new.getValue(FACING);
         Direction right, left;
         if (facing.getAxis().isHorizontal()) {
@@ -139,15 +100,6 @@ public class NandGateBlock extends BasicDirectionalBlock {
         if ((!state_new.getValue(POWERED) && !state_new.getValue(LEFT_INPUT)) || (!state_new.getValue(POWERED) && !state_new.getValue(RIGHT_INPUT))) {
             state_new = state_new.setValue(POWERED, true);
         }
-
-        // Update block state when changed
-        if (state_new != state) {
-            world.setBlock(pos, state_new, 3);
-        }
-    }
-
-    private int getInputSignal(Level world, BlockPos pos, Direction direction) {
-        BlockPos inputPos = pos.relative(direction);
-        return world.getSignal(inputPos, direction);
+        return state_new;
     }
 }
