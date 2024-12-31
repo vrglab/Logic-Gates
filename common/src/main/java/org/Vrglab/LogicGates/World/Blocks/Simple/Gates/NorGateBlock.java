@@ -12,10 +12,9 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.ticks.TickPriority;
-import org.Vrglab.LogicGates.World.Blocks.Simple.BasicDirectionalBlock;
 import org.Vrglab.LogicGates.World.Blocks.Simple.BlockStateProperties;
 
-public class NorGateBlock extends BasicDirectionalBlock {
+public class NorGateBlock extends BaseGateClass {
     public static final MapCodec<NorGateBlock> CODEC = simpleCodec(NorGateBlock::new);
 
     public static final BooleanProperty LEFT_INPUT = BlockStateProperties.LEFT_INPUT;
