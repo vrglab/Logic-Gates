@@ -72,7 +72,7 @@ public class WorldUtils extends Utils {
     }
 
     public static Item.Properties getBaseSettings(){
-        return new Item.Properties();
+        return new Item.Properties().arch$tab(CreativeModeTabs.REDSTONE_BLOCKS);
     }
     public static Item.Properties getBaseSettings(ResourceKey<CreativeModeTab> tab){
         return new Item.Properties().arch$tab(tab);
