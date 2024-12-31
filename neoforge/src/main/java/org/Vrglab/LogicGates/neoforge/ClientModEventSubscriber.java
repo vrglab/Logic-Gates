@@ -20,6 +20,7 @@ public class ClientModEventSubscriber {
         event.enqueueWork(() -> {
             // Replace TRANSPARENT_BLOCK with your block instance
             ItemBlockRenderTypes.setRenderLayer((Block)Utils.convertToMcSafeType(LogicGateBasicBlocks.NOT_GATE_BLOCK), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer((Block)Utils.convertToMcSafeType(LogicGateBasicBlocks.AND_GATE_BLOCK), RenderType.cutout());
         });
     }
 }
