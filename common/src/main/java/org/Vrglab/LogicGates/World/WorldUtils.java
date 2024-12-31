@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.Vrglab.LogicGates.LogicGatesMod;
 import org.Vrglab.Modloader.Registration.Registry;
+import org.Vrglab.Utils.Utils;
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Constructor;
@@ -18,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class WorldUtils {
+public class WorldUtils extends Utils {
 
     public static ResourceLocation createLocation(String obj) {
         return new ResourceLocation(LogicGatesMod.MOD_ID, obj);
