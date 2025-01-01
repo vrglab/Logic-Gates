@@ -8,5 +8,8 @@ public class LogicGatesClient  {
 
     public static void SetBlockLayerMaps() {
         BlockRenderLayerMap.INSTANCE.putBlock((Block) LogicGateBasicBlocks.NOT_GATE_BLOCK, RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock((Block) LogicGateBasicBlocks.AND_GATE_BLOCK, RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock((Block) LogicGateBasicBlocks.NAND_GATE_BLOCK, RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock((Block) LogicGateBasicBlocks.NOR_GATE_BLOCK, RenderType.cutout());
     }
 }
